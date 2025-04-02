@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Active Shooter Inject Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #output {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>Active Shooter Inject Generator</h1>
+    <p>Click a button to generate a random inject for field supervisors at a school active shooter scene.</p>
+    
+    <button onclick="generateInject('hearts')">Emotional/Psychological (Hearts)</button>
+    <button onclick="generateInject('diamonds')">Resources/Logistics (Diamonds)</button>
+    <button onclick="generateInject('clubs')">Operational Tactics (Clubs)</button>
+    <button onclick="generateInject('spades')">Communication/Coordination (Spades)</button>
+    <button onclick="generateInject('jokers')">Wild Cards (Jokers)</button>
+    
+    <div id="output">Your inject will appear here.</div>
+
+    <script>
+        // Injects organized by suit, including Jokers
+        let injects = {
+            hearts: [
+                "Parents flood the scene, demanding to enter the school to find their children.",
+                "A teacher emerges hysterical, unable to provide coherent details about the shooter.",
+                "A student escapes but collapses in shock, requiring immediate attention.",
+                "A group of students barricaded in a classroom calls 911, pleading for rescue.",
+                "Rumors spread among parents that the shooter is targeting specific students, escalating panic.",
+                "A school counselor insists on entering to calm trapped students, risking safety.",
+                "A responder freezes under pressure, overwhelmed by the sight of injured children.",
+                "A parent physically assaults an officer, blaming them for delays in response.",
+                "A group of students hiding in the library begins livestreaming, heightening public fear.",
+                "A teacher accuses responders of not doing enough, undermining morale.",
+                "A local politician arrives, drawing emotional attention and demanding updates.",
+                "A parent begs for culturally sensitive handling of their child’s rescue.",
+                "A decision is needed to withhold casualty details from parents to maintain order."
+            ],
+            diamonds: [
+                "SWAT team arrival is delayed by 15 minutes due to traffic.",
+                "Only one ambulance is immediately available for multiple casualties.",
+                "The school’s first aid kit is inaccessible, locked in the nurse’s office.",
+                "A shortage of ballistic shields limits entry team options.",
+                "The nearest trauma center reports it’s at capacity with incoming victims.",
+                "A delivery of tourniquets is stuck outside the perimeter due to crowd control issues.",
+                "The school’s evacuation bus breaks down, stranding evacuees.",
+                "Volunteers arrive with water but clog access points for emergency vehicles.",
+                "A malfunctioning generator cuts power to temporary command post equipment.",
+                "A blocked school entrance delays the tactical team’s deployment.",
+                "A news van parks in the staging area, obstructing ambulance access.",
+                "Local businesses offer food and supplies but need coordination to deliver.",
+                "A decision is required to divert limited resources to a reported second shooter."
+            ],
+            clubs: [
+                "The shooter’s location is unknown, complicating initial perimeter setup.",
+                "A fire alarm is triggered, masking gunfire and confusing responders.",
+                "A suspicious backpack is found near the gym, raising bomb concerns.",
+                "Students fleeing the scene breach the outer perimeter, risking exposure.",
+                "A bottleneck forms at the main exit as students evacuate chaotically.",
+                "An armed school resource officer engages the shooter independently, out of contact.",
+                "A locked classroom door prevents entry to a reported casualty.",
+                "A group of students runs toward responders, potentially in the shooter’s line of sight.",
+                "The shooter barricades themselves in the cafeteria with hostages.",
+                "A second shooter is reported in the auditorium, splitting tactical focus.",
+                "SWAT arrives but lacks a clear handover from initial responders.",
+                "A local vigilante arrives armed, insisting on entering the school.",
+                "A decision is needed to breach the building now or wait for additional tactical support."
+            ],
+            spades: [
+                "Radio channels overload as multiple agencies respond simultaneously.",
+                "Dispatch relays conflicting reports about the shooter’s location.",
+                "A non-English-speaking student provides critical info but needs translation.",
+                "Social media posts claim the shooter is still active, despite conflicting evidence.",
+                "Firefighters arrive but use a different frequency, delaying coordination.",
+                "A school administrator gives outdated floor plans, misguiding entry teams.",
+                "The media broadcasts live, revealing police positions to the shooter.",
+                "A parent uses a loudspeaker to call their child, disrupting radio silence.",
+                "A misheard order sends a team to the wrong wing of the school.",
+                "Cell networks crash, cutting off communication with trapped students.",
+                "The school superintendent demands an immediate briefing, pulling focus.",
+                "A translator is urgently needed for a foreign exchange student witness.",
+                "A decision is required to issue a lockdown order for nearby schools."
+            ],
+            jokers: [
+                "A sudden power outage disables school cameras and lighting.",
+                "A tactical medic team arrives unexpectedly, offering immediate casualty support."
+            ]
+        };
+
+        // Function to generate and display a random inject
+        function generateInject(suit) {
+            let availableInjects = injects[suit];
+            let outputDiv = document.getElementById("output");
+
+            if (availableInjects.length === 0) {
+                outputDiv.innerHTML = `No more injects available for ${suit.charAt(0).toUpperCase() + suit.slice(1)}.`;
+                return;
+            }
+
+            // Pick a random inject
+            let randomIndex = Math.floor(Math.random() * availableInjects.length);
+            let selectedInject = availableInjects[randomIndex];
+
+            // Display the inject
+            outputDiv.innerHTML = `<strong>${suit.charAt(0).toUpperCase() + suit.slice(1)} Inject:</strong> ${selectedInject}`;
+
+            // Remove the used inject from the array
+            availableInjects.splice(randomIndex, 1);
+        }
+    </script>
+</body>
+</html>
